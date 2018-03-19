@@ -79,6 +79,7 @@ NeoBundle 'Townk/vim-autoclose'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'vim-jp/vim-go-extra'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'kana/vim-submode'
 
 "Color
 NeoBundle 'tomasr/molokai'
@@ -104,8 +105,22 @@ if isdirectory(expand("~/.vim/bundle/molokai/"))
     set background=dark
 endif
 
+if isdirectory(expand("~/.vim/bundle/vim-submode/"))
+    call submode#enter_with('bufmove', 'n', '', '<C-w>>', '<C-w>>')
+    call submode#enter_with('bufmove', 'n', '', '<C-w><', '<C-w><')
+    call submode#enter_with('bufmove', 'n', '', '<C-w>+', '<C-w>+')
+    call submode#enter_with('bufmove', 'n', '', '<C-w>-', '<C-w>-')
+    call submode#map('bufmove', 'n', '', '>', '<C-w>>')
+    call submode#map('bufmove', 'n', '', '<', '<C-w><')
+    call submode#map('bufmove', 'n', '', '+', '<C-w>+')
+    call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+endif
+
 "NERDTree
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
+nnoremap <silent><C-n> :NERDTree<CR>
+
+let g:NERDTreeWinSize=40
 
 "インデントだけの空行でインデントが削除されるのを防ぐ
 nnoremap o oX<C-h>
