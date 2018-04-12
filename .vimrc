@@ -19,9 +19,9 @@ set list
 set listchars=tab:>-,extends:<,trail:-,eol:\ 
 
 "Pythonのためのインデント設定
-autocmd FileType python setl autoindent
-autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+"autocmd FileType python setl autoindent
+"autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+"autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
 autocmd FileType html :setlocal indentexpr=""
 
@@ -80,6 +80,7 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'vim-jp/vim-go-extra'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kana/vim-submode'
+NeoBundle 'Vimjas/vim-python-pep8-indent'
 
 "Color
 NeoBundle 'tomasr/molokai'
