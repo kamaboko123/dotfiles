@@ -29,6 +29,9 @@ autocmd FileType html :setlocal indentexpr=""
 syntax on
 set t_Co=256
 
+"検索ハイライト
+set hlsearch
+
 "行番号
 set number
 
