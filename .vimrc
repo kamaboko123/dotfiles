@@ -126,6 +126,14 @@ nnoremap <silent><C-n> :NERDTree<CR>
 
 let g:NERDTreeWinSize=40
 
+"Ctrl+h, Ctrl+lで1単語戻る・進む
+nnoremap <silent><C-h> b
+nnoremap <silent><C-l> w
+
+"Ctrl+u, Ctrl+iで行頭・行末へ
+nnoremap <silent><C-u> <C-0>
+nnoremap <silent><C-i> <C-$>
+
 "インデントだけの空行でインデントが削除されるのを防ぐ
 nnoremap o oX<C-h>
 nnoremap O OX<C-h>
