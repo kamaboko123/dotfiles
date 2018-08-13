@@ -27,7 +27,12 @@ autocmd FileType html :setlocal indentexpr=""
 
 "シンタックスハイライト
 syntax on
-set t_Co=256
+
+"自動で認識してくれるので明示的に書かなくていいらしい？
+
+"set t_Co=256
+"終了するときに戻さないと何故か抜けたあとのshellの色がおかしくなる
+autocmd VimLeave * let &t_Co = 8
 
 "検索ハイライト
 set hlsearch
