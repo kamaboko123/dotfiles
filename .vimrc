@@ -144,6 +144,11 @@ nnoremap o oX<C-h>
 nnoremap O OX<C-h>
 inoremap <CR> <CR>X<C-h>
 
+" 入力モード中でもctrk + h,j,k,lで移動できるようにする
+imap <C-k> <Up>
+imap <C-j> <Down>
+imap <C-h> <Left>
+imap <C-l> <Right>
 
 "FileType Plugin有効化(~/.vim/ftpluginに拡張子ごとの設定ファイルを定義できる)
 "filetype plugin on
