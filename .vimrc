@@ -133,6 +133,7 @@ let g:NERDTreeWinSize=40
 
 "Ctrl+h, Ctrl+lで1単語戻る・進む
 nnoremap <silent><C-h> b
+nnoremap <silent><BS> b
 nnoremap <silent><C-l> w
 
 "Ctrl+u, Ctrl+iで行頭・行末へ
