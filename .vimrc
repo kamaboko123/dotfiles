@@ -146,6 +146,8 @@ nnoremap O OX<C-h>
 inoremap <CR> <CR>X<C-h>
 
 " 入力モード中でもctrk + h,j,k,lで移動できるようにする
+" 一部の環境ではC-hがBS扱いなので使えない、諦めて（<C-BS>は使えない）
+" ターミナルエミュレータ依存
 imap <C-k> <Up>
 imap <C-j> <Down>
 imap <C-h> <Left>
