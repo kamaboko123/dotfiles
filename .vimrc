@@ -133,6 +133,7 @@ let g:NERDTreeWinSize=40
 
 "Ctrl+h, Ctrl+lで1単語戻る・進む
 nnoremap <silent><C-h> b
+nnoremap <silent><BS> b
 nnoremap <silent><C-l> w
 
 "Ctrl+u, Ctrl+iで行頭・行末へ
@@ -145,6 +146,8 @@ nnoremap O OX<C-h>
 inoremap <CR> <CR>X<C-h>
 
 " 入力モード中でもctrk + h,j,k,lで移動できるようにする
+" 一部の環境ではC-hがBS扱いなので使えない、諦めて（<C-BS>は使えない）
+" ターミナルエミュレータ依存
 imap <C-k> <Up>
 imap <C-j> <Down>
 imap <C-h> <Left>
