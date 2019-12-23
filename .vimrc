@@ -89,6 +89,8 @@ NeoBundle 'vim-jp/vim-go-extra'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kana/vim-submode'
 NeoBundle 'Vimjas/vim-python-pep8-indent'
+NeoBundle 'vim-syntastic/syntastic'
+NeoBundle 'itchyny/lightline.vim'
 
 "Color
 NeoBundle 'tomasr/molokai'
@@ -144,6 +146,11 @@ nnoremap <silent><C-i> <C-$>
 nnoremap o oX<C-h>
 nnoremap O OX<C-h>
 inoremap <CR> <CR>X<C-h>
+
+"lightline
+let g:lightline = {
+    \ 'colorscheme': 'jellybeans'
+\}
 
 " 入力モード中でもctrk + h,j,k,lで移動できるようにする
 " 一部の環境ではC-hがBS扱いなので使えない、諦めて（<C-BS>は使えない）
