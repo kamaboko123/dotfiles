@@ -1,164 +1,119 @@
-"バックスペースで消える文字
+"reference
+"https://github.com/Shougo/dein.vim
+"https://www.lisz-works.com/entry/vim-deinvim
+
+let s:dein_dir = expand('$HOME/.vim/plugins')
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+"Install dein if not installed
+if &runtimepath !~# '/dein.vim'
+    if !isdirectory(s:dein_repo_dir)
+        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+    endif
+    execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
+
+"dein script
+if dein#load_state(s:dein_dir)
+    call dein#begin(s:dein_dir)
+    
+    "Put plugins here!
+    call dein#add('tomasr/molokai')
+    call dein#add('scrooloose/nerdtree')
+    call dein#add('nathanaelkane/vim-indent-guides')
+
+    call dein#end()
+    call dein#save_state()
+endif
+
+if dein#check_install()
+    call dein#install()
+endif
+
+
+"Plugin settings
+
+"ColorScheme(molokai)
+colorscheme molokai
+let g:rehash256 = 1
+set background=dark
+
+
+"NredTree
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+nnoremap <silent><C-n> :NERDTree<CR>
+let g:NERDTreeWinSize=40
+
+"vim-indent-guides
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_guide_size=1
+let g:indent_guides_auto_colors=0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=236
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=237
+
+
+
+"Vim settings
+
+"backspaceで消す文字
 set backspace=start,eol,indent
-
-
-"はじめにfiletype無効化（初期化）
-"filetype off
-
-set smarttab
-set expandtab
-set tabstop=4
-set shiftwidth=4
-set autoindent
-
-"yank clipbord share
-set clipboard=unnamed,autoselect
-
-"タブ文字、スペース、行末などに表示される文字指定
-set list
-set listchars=tab:>-,extends:<,trail:-,eol:\ 
-
-"Pythonのためのインデント設定
-"autocmd FileType python setl autoindent
-"autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-"autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
-
-autocmd FileType html :setlocal indentexpr=""
-
-"シンタックスハイライト
-syntax on
-
-"自動で認識してくれるので明示的に書かなくていいらしい？
-
-"set t_Co=256
-"終了するときに戻さないと何故か抜けたあとのshellの色がおかしくなる
-autocmd VimLeave * let &t_Co = 8
 
 "検索ハイライト
 set hlsearch
 
-"行番号
+"行番号表示
 set number
 
-"折り返さない
+"折り返し
 set nowrap
 
-"vimの下部に表示される情報
+"下部に表示される情報
 set laststatus=2
 set statusline=%F%m%r%h%w\ [%{&fileencoding},\ %{&ff}]\ [TYPE=%Y]\ [POS=%04l,%04v][%p%%]
 
-" vim-indent-guides
-let g:indent_guides_auto_colors=0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=236
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=237
-let g:indent_guides_enable_on_vim_startup=1
-let g:indent_guides_guide_size=1
+"インデント関連
+set shiftwidth=4
+set tabstop=4
+set expandtab
+set smarttab
+set autoindent
 
-"最後にカーソルが合った行に移動
+"ハイライト
+syntax on
+
+"最後にカーソルがあった行で開く
 augroup vimrcEx
     au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
     \ exe "normal g`\"" | endif
 augroup END "
 
-
-"------------------------------------------------------------------------------
-"プラグイン管理(NeoBundle)
-"neobundle 自動インストール
-if has('vim_starting')
-  set nocompatible
-  " neobundle をインストールしていない場合は自動インストール
-  if !isdirectory(expand("~/.vim/bundle/neobundle.vim/"))
-    echo "install neobundle..."
-    " vim からコマンド呼び出しているだけ neobundle.vim のクローン
-    :call system("git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim")
-  endif
-  " runtimepath の追加は必須
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
-call neobundle#begin(expand('~/.vim/bundle'))
-let g:neobundle_default_git_protocol='https'
-
-
-"neobundle自体をneobundleで管理
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-"追加プラグイン
-NeoBundle 'Townk/vim-autoclose'
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'vim-jp/vim-go-extra'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'kana/vim-submode'
-NeoBundle 'Vimjas/vim-python-pep8-indent'
-NeoBundle 'vim-syntastic/syntastic'
-NeoBundle 'itchyny/lightline.vim'
-
-"Color
-NeoBundle 'tomasr/molokai'
-
-call neobundle#end()
-
-"Required:
-filetype plugin indent on
-
-NeoBundleCheck
-"//---------------------------------------------------------------------
-
-"molokai設定
-if isdirectory(expand("~/.vim/bundle/molokai/"))
-    "全角スペースの可視化
-    autocmd ColorScheme * hi link TwoByteSpace Error
-    autocmd VimEnter,WinEnter * let w:m_tbs = matchadd("TwoByteSpace", '　')
-    
-    "molokai色設定
-    colorscheme molokai
-    let g:molokai_original = 1
-    let g:rehash256 = 1
-    set background=dark
-endif
-
-if isdirectory(expand("~/.vim/bundle/vim-submode/"))
-    call submode#enter_with('bufmove', 'n', '', '<C-w>>', '<C-w>>')
-    call submode#enter_with('bufmove', 'n', '', '<C-w><', '<C-w><')
-    call submode#enter_with('bufmove', 'n', '', '<C-w>+', '<C-w>+')
-    call submode#enter_with('bufmove', 'n', '', '<C-w>-', '<C-w>-')
-    call submode#map('bufmove', 'n', '', '>', '<C-w>>')
-    call submode#map('bufmove', 'n', '', '<', '<C-w><')
-    call submode#map('bufmove', 'n', '', '+', '<C-w>+')
-    call submode#map('bufmove', 'n', '', '-', '<C-w>-')
-endif
-
-"NERDTree
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
-nnoremap <silent><C-n> :NERDTree<CR>
-
-let g:NERDTreeWinSize=40
-
 "Ctrl+h, Ctrl+lで1単語戻る・進む
 nnoremap <silent><C-h> b
-nnoremap <silent><BS> b
 nnoremap <silent><C-l> w
 
-"Ctrl+u, Ctrl+iで行頭・行末へ
-nnoremap <silent><C-u> <C-0>
-nnoremap <silent><C-i> <C-$>
+"各種ディレクトリ
+let s:vim_dir = '~/.vim'
+let s:swap_dir = s:vim_dir . '/swp'
+let s:backup_dir = s:vim_dir . '/back'
+let s:undo_dir = s:vim_dir . '/undo'
 
-"インデントだけの空行でインデントが削除されるのを防ぐ
-nnoremap o oX<C-h>
-nnoremap O OX<C-h>
-inoremap <CR> <CR>X<C-h>
+if !isdirectory(s:swap_dir)
+    execute 'silent !mkdir -p' s:swap_dir
+endif
+if !isdirectory(s:backup_dir)
+    execute 'silent !mkdir -p' s:backup_dir
+endif
+if !isdirectory(s:undo_dir)
+    execute 'silent !mkdir -p' s:undo_dir
+endif
 
-"lightline
-let g:lightline = {
-    \ 'colorscheme': 'jellybeans'
-\}
+set swapfile
+"set backup
+"set undofile
+execute 'set directory=' . s:swap_dir
+execute 'set backupdir=' . s:backup_dir
+execute 'set undodir=' . s:undo_dir
 
-" 入力モード中でもctrk + h,j,k,lで移動できるようにする
-" 一部の環境ではC-hがBS扱いなので使えない、諦めて（<C-BS>は使えない）
-" ターミナルエミュレータ依存
-imap <C-k> <Up>
-imap <C-j> <Down>
-imap <C-h> <Left>
-imap <C-l> <Right>
+"filetype自動検出、極力最後に置く
+filetype plugin indent on
 
-"FileType Plugin有効化(~/.vim/ftpluginに拡張子ごとの設定ファイルを定義できる)
-"filetype plugin on
