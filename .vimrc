@@ -13,7 +13,7 @@ if &runtimepath !~# '/dein.vim'
     execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
-"dein script
+"Manage plugins by dein
 if dein#load_state(s:dein_dir)
     call dein#begin(s:dein_dir)
     
@@ -21,6 +21,7 @@ if dein#load_state(s:dein_dir)
     call dein#add('tomasr/molokai')
     call dein#add('scrooloose/nerdtree')
     call dein#add('nathanaelkane/vim-indent-guides')
+    call dein#add('scrooloose/syntastic')
 
     call dein#end()
     call dein#save_state()
@@ -44,12 +45,27 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 nnoremap <silent><C-n> :NERDTree<CR>
 let g:NERDTreeWinSize=40
 
+
 "vim-indent-guides
 let g:indent_guides_enable_on_vim_startup=1
 let g:indent_guides_guide_size=1
 let g:indent_guides_auto_colors=0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd   ctermbg=236
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=237
+
+
+"syntastic
+let g:syntastic_python_checkers = ["flake8"]
+"let g:syntastic_python_checkers = ["pep8"]
+
+"recomend setting: https://github.com/vim-syntastic/syntastic#3-recommended-settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 
 
@@ -114,6 +130,23 @@ execute 'set directory=' . s:swap_dir
 execute 'set backupdir=' . s:backup_dir
 execute 'set undodir=' . s:undo_dir
 
-"filetype自動検出、極力最後に置く
+
+
+"Python autopep8(Format python code at save)
+function! RunAutopep8()
+    call execute(":silent %!autopep8 -")
+endfunction
+
+if executable('autopep8')
+    "Format automatically at save file
+    "autocmd FileType python autocmd! BufWritePre *.py call RunAutopep8()
+    
+    "Format manualy on normal mode
+    autocmd FileType python nnoremap <S-f> :call RunAutopep8() <CR>
+endif
+
+
+
+"極力最後に置くといいらしい？
 filetype plugin indent on
 
