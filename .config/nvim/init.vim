@@ -22,7 +22,7 @@ if dein#load_state(s:dein_dir)
     call dein#add('scrooloose/nerdtree')
     call dein#add('nathanaelkane/vim-indent-guides')
     call dein#add('scrooloose/syntastic')
-    call dein#add('https://github.com/github/copilot.vim') # Exec `:Copilot setup` after install
+    call dein#add('https://github.com/github/copilot.vim') "Exec `:Copilot setup` after install
 
     call dein#end()
     call dein#save_state()
