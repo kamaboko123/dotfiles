@@ -4,21 +4,22 @@
 
 ### clone repository
 ```
+cd $HOME
 git clone https://github.com/kamaboko123/dotfiles.git
 ```
 
 ### nvim
 ```
-ln -s dotfiles/.config/nvim/init.vim ~/.config/nvim/init.vim 
+ln -s $HOME/dotfiles/.config/nvim/init.vim $HOME/.config/nvim/init.vim 
 ```
 
 ### tmux
 ```
-ln -s dotfiles/.tmux.conf ~/.tmux.conf
+ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
 ```
 
 ### git
 ```
-ln -s dotfiles/.gitconfig ~/.gitconfig
+ln -s $HOME/dotfiles/.gitconfig $HOME/.gitconfig
 ```
 

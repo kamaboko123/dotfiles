@@ -2,7 +2,7 @@
 "https://github.com/Shougo/dein.vim
 "https://www.lisz-works.com/entry/vim-deinvim
 
-let s:dein_dir = expand('$HOME/.vim/plugins')
+let s:dein_dir = expand('$HOME/.nvim/plugins')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 "Install dein if not installed
@@ -22,6 +22,7 @@ if dein#load_state(s:dein_dir)
     call dein#add('scrooloose/nerdtree')
     call dein#add('nathanaelkane/vim-indent-guides')
     call dein#add('scrooloose/syntastic')
+    call dein#add('https://github.com/github/copilot.vim') # Exec `:Copilot setup` after install
 
     call dein#end()
     call dein#save_state()
@@ -32,12 +33,15 @@ if dein#check_install()
 endif
 
 
+"File type
+autocmd BufNewFile,BufRead *.asm set filetype=nasm
+
 "Plugin settings
 
 "ColorScheme(molokai)
-colorscheme molokai
-let g:rehash256 = 1
-set background=dark
+"colorscheme molokai
+"let g:rehash256 = 1
+"set background=dark
 
 
 "NredTree
@@ -57,6 +61,9 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven  ctermbg=237
 "syntastic
 let g:syntastic_python_checkers = ["flake8"]
 "let g:syntastic_python_checkers = ["pep8"]
+let g:syntastic_asm_checkers = ["nasm"]
+
+let g:syntastic_c_config_file = ".syntastic_c_config"
 
 "recomend setting: https://github.com/vim-syntastic/syntastic#3-recommended-settings
 set statusline+=%#warningmsg#
@@ -66,7 +73,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
 
 
 "Vim settings
