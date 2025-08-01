@@ -1,6 +1,7 @@
 return{
     {require("colorscheme")},
-    {require("nerdtree")},
+    --{require("nerdtree")},
+    {require("fern")},
     {require("indent-blankline")},
     {require("telescope")},
     {require("copilot")},

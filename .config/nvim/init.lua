@@ -3,6 +3,7 @@ require("config.lazy")
 -- General settings
 vim.o.number = true
 vim.o.backspace = "indent,eol,start"
+vim.o.wrap = false
 
 -- Indent
 vim.o.shiftwidth = 4
