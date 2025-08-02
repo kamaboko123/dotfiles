@@ -25,3 +25,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end
   end,
 })
+
+-- clipboard support with OSC52
+vim.g.clipboard = 'osc52'
