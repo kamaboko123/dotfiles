@@ -6,15 +6,23 @@ return{
     opts = {
     },
     config = function()
+        -- ハイライトグループを設定（基本のインデント線のみ）
+        vim.api.nvim_set_hl(0, "IblIndent", { fg = "#3C3C3C" })  -- 通常のインデント線（薄いグレー）
+        
         require("ibl").setup{
             indent = {
-                char = "|",
-                tab_char = ">",
+                char = "│",
+                tab_char = "│",
+                highlight = "IblIndent",
             },
             scope = {
-                enabled = true,
-                show_start = true,
-                show_end = true,
+                enabled = false,  -- スコープ機能は無効（mini.indentscopeに任せる）
+            },
+            exclude = {
+                filetypes = {
+                    "help", "alpha", "dashboard", "neo-tree", "Trouble",
+                    "lazy", "mason", "notify", "toggleterm", "lazyterm",
+                },
             },
         }
     end

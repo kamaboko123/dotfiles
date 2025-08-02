@@ -3,6 +3,7 @@ return{
     --{require("nerdtree")},
     {require("fern")},
     {require("indent-blankline")},
+    {require("mini-indentscope")},
     {require("telescope")},
     {require("copilot")},
     {require("copilot-chat")},
