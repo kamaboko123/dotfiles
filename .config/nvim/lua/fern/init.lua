@@ -2,10 +2,6 @@ return {
     "lambdalisue/vim-fern",
     dependencies = {},
     config= function()
-        nvim_config_dir = vim.fn.stdpath("config")
-        fern_config_dir = nvim_config_dir .. "/lua/fern"
-        vim.cmd([[source]] .. fern_config_dir .. "/config.vim")
-        
         -- trashコマンドが存在するか確認する
         -- ファイル削除は基本的にtrashを使う
         function check_trash_command()
