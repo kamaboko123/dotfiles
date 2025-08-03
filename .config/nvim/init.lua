@@ -31,7 +31,7 @@ vim.o.autoindent = true
 
 -- Indent config for filetypes
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "c", "cpp", "java", "javascript", "typescript", "python", "lua", "go" },
+  pattern = { "c", "cpp", "java", "javascript", "typescript", "python", "lua", "go", "lua" },
   callback = function()
     vim.opt_local.shiftwidth = 4
     vim.opt_local.tabstop = 4

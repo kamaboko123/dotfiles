@@ -7,4 +7,5 @@ return{
     {require("telescope")},
     {require("copilot")},
     {require("copilot-chat")},
+    {require("lsp")},
 }
