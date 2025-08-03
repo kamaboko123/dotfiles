@@ -13,6 +13,9 @@ return{
         }
     },
     config = function()
+        vim.lsp.enable("lua_ls")
+        vim.lsp.enable("gopls")
+
         vim.keymap.set('n', 'gd', '<cmd>:lua vim.lsp.buf.definition()<CR>')
     end,
 }

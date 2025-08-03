@@ -41,4 +41,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.keymap.set("n", "gp", "<cmd>bprevious<CR>", { silent = true})
+vim.keymap.set("n", "gn", "<cmd>bnext<CR>", { silent = true })
 
