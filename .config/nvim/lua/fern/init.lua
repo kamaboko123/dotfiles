@@ -14,14 +14,14 @@ return {
 
         -- Ctrl + eで開閉
         vim.keymap.set("n", "<C-e>", ":Fern . -toggle -drawer -width=40<CR>", { silent = true })
-        
+
         -- keymapの設定
         vim.g['fern#disable_default_mappings'] = 1
         vim.api.nvim_create_autocmd('FileType', { --Fernのバッファ内でのキーマップ
             pattern = 'fern',
             callback = function()
                 local opts = { buffer = true, silent = true } -- バッファローカルのオプション設定
-                
+
                 -- lでディレクトリを展開
                 vim.keymap.set('n', 'l', function()
                     -- ファイルかディレクトリかで挙動を変える(expandだとファイルを開いてしまう)
@@ -38,7 +38,7 @@ return {
                         'n', false
                     )
                 end, opts)
-                
+
                 -- Ctrl + lでディレクトリに移動
                 vim.keymap.set('n', '<C-l>', function()
                     local expr = vim.fn["fern#smart#leaf"](
@@ -84,12 +84,12 @@ return {
                 vim.keymap.set('n', 's', '<Plug>(fern-action-open:split)', opts)
 
                 -- ファイル操作系
-                -- new file
-                vim.keymap.set('n', 'n', '<Plug>(fern-action-new-file)', opts)
+                -- new file(if end /, it will be create directory)
+                vim.keymap.set('n', 'nn', '<Plug>(fern-action-new-path)', opts)
                 -- copy(clipboard)
                 vim.keymap.set('n', 'yy', '<Plug>(fern-action-clipboard-copy)', opts)
                 -- cut(clipboard)
-                vim.keymap.set('n', 'dd', '<Plug>(fern-action-clipboard-cut)', opts)
+                vim.keymap.set('n', 'dd', '<Plug>(fern-action-clipboard-move)', opts)
                 -- paste(clipboard)
                 vim.keymap.set('n', 'p', '<Plug>(fern-action-clipboard-paste)', opts)
                 -- rename
